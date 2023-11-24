@@ -1,0 +1,126 @@
+INSERT INTO Students (name, birth_date, grade_level)
+VALUES
+    ('Ralph Ranque', '2004-01-08', 11),
+    ('Mathew Valdez', '2005-05-09', 12),
+    ('Jeremy Duran', '2004-12-31', 11),
+    ('Ains Rubianes', '2005-06-09', 12),
+    ('Ahl Rubianes', '2004-07-09', 11),
+    ('Arwin Rubianes', '2004-07-09', 12),
+    ('Ains Rubianes', '2005-06-09', 11),
+    ('Angelo Duran', '2004-02-04', 12),
+    ('Dei Tolentino', '2004-10-03', 12),
+    ('Joshua Tolentino', '2004-10-03', 11),
+    ('Jerome Tolentino', '2005-02-04', 12),
+    ('Cedie Tolentino', '2005-02-04', 11),
+    ('John Cena', '2004-01-01', 12),
+    ('Princess Pearl', '2005-04-05', 11),
+    ('Manny Pacquiao', '2004-07-25', 12),
+    ('Bobby Pacquiao', '2005-05-02', 11),
+    ('Audric Corpuz', '2003-07-06', 12),
+    ('Justine Shine', '2004-11-14', 11),
+    ('Stone Batumbakal', '2005-09-19', 12);
+    
+SELECT * FROM Students;
+  
+INSERT INTO Courses (strand_id, strand_name, credits)
+  VALUES
+    (101, '11-STEM', 40),
+    (102, '12-STEM', 35),
+    (103, '11-ABM', 36),
+    (104, '12-ABM', 38),
+    (105, '11-HUMSS', 39),
+    (106, '12-HUMSS', 37),
+    (107, '11-ICT', 41),
+    (108, '12-ICT', 34);
+    
+SELECT * FROM Courses;
+
+INSERT INTO Enrollments (enrollment_id, student_id, strand_id)
+VALUES
+    (1001, 1, 101),
+    (1002, 2, 102),
+    (1003, 3, 103),
+    (1004, 4, 104),
+    (1005, 5, 105),
+    (1006, 6, 106),
+    (1007, 7, 107),
+    (1008, 8, 108),
+    (1009, 9, 108),
+    (1010, 10, 107),
+    (1011, 11, 106),
+    (1012, 12, 105),
+    (1013, 13, 104),
+    (1014, 14, 103),
+    (1015, 15, 102),
+    (1016, 16, 101),
+    (1017, 17, 102),
+    (1018, 18, 101),
+    (1019, 19, 102);
+    
+SELECT * FROM Enrollments;
+
+-- query 1 --
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 101;
+
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 102;
+
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 103;
+
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 104;
+
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 105;
+
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 106;
+
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 107;
+
+SELECT Students.student_id, Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section'
+FROM Students
+INNER JOIN Enrollments ON Students.student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+WHERE Enrollments.strand_id = 108;
+
+-- query 2 --
+SELECT Students.student_id AS 'Student ID', Students.name AS 'Student Name', Courses.strand_name AS 'Grade and Section', Courses.credits AS 'Credits'
+FROM Students
+INNER JOIN Enrollments ON Students.Student_id = Enrollments.student_id
+INNER JOIN Courses ON Enrollments.strand_id = Courses.strand_id
+GROUP BY Students.student_id, Students.name, Courses.credits, Courses.strand_name;
+
+-- query 3 --
+SELECT Courses.strand_id AS 'Strand ID', Courses.strand_name AS 'Strand Name', COUNT(Enrollments.student_id) AS 'Enrolled Students'
+FROM Courses
+LEFT JOIN Enrollments on Courses.strand_id = Enrollments.strand_id
+GROUP BY Courses.strand_id, Courses.strand_name;
+
+
+    
+    

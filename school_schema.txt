@@ -1,0 +1,21 @@
+CREATE TABLE Students (
+  student_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(65),
+  birth_date DATE,
+  grade_level INT CHECK (grade_level IN (11, 12))
+ );
+ 
+ CREATE TABLE Courses (
+   strand_id INT PRIMARY KEY,
+   strand_name VARCHAR(10),
+   credits INT
+);
+
+
+CREATE TABLE Enrollments (
+  enrollment_id INT PRIMARY KEY,
+  student_id INT,
+  strand_id INT,
+  FOREIGN KEY (student_id) REFERENCES Students(student_id),
+  FOREIGN KEY (strand_id) REFERENCES Courses(strand_id)
+);
